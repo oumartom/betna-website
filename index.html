@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betna - Diversified Services, Unvarying Quality</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0099E5;
+            --secondary-color: #000000;
+            --accent-color: #00A1F1;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        body.rtl {
+            direction: rtl;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 2px solid var(--primary-color);
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            border-radius: 5px;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section with Slideshow */
+        .hero {
+            margin-top: 80px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: relative;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,153,229,0.8), rgba(0,0,0,0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 1s 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,153,229,0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-highlight {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-left: 4px solid var(--primary-color);
+            margin-top: 2rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,153,229,0.2);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Grand Standing Section */
+        .grand-standing {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .grand-standing .section-title {
+            color: var(--white);
+        }
+
+        .grand-standing .section-title::after {
+            background: var(--white);
+        }
+
+        .grand-standing-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info p {
+            color: var(--text-light);
+        }
+
+        /* Projects Gallery */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 350px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: var(--white);
+            padding: 2rem;
+            transform: translateY(60%);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        /* Clients Section */
+        .clients-section {
+            background: var(--bg-light);
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .client-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .client-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,153,229,0.2);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-color);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 40px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="assets/images/logo.png" alt="Betna Logo" class="logo-img">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-translate="nav_home">Accueil</a></li>
+                <li><a href="#about" data-translate="nav_about">À Propos</a></li>
+                <li><a href="#services" data-translate="nav_services">Services</a></li>
+                <li><a href="#grand-standing" data-translate="nav_standing">Grand Standing</a></li>
+                <li><a href="#team" data-translate="nav_team">Équipe</a></li>
+                <li><a href="#projects" data-translate="nav_projects">Réalisations</a></li>
+                <li><a href="#contact" data-translate="nav_contact">Contact</a></li>
+                <li class="lang-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="changeLanguage('ar')">AR</button>
+                </li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="assets/images/projects/Salon6.jpeg" alt="Betna Services">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/projects/Salon7.jpeg" alt="Gestion Immobilière">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/projects/DevantureVilla1.jpeg" alt="Construction">
+            </div>
+        </div>
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1 data-translate="hero_title">Diversified Services, Unvarying Quality</h1>
+                <p data-translate="hero_subtitle">Leader de la gestion immobilière au Tchad</p>
+                <a href="#contact" class="cta-button" data-translate="hero_cta">Contactez-nous</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title" data-translate="about_title">À Propos de Betna</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3 data-translate="about_subtitle">Votre Partenaire en Gestion Immobilière</h3>
+                <p data-translate="about_p1">Betna est une société spécialisée dans la gestion immobilière et les services de construction, proposant des solutions intégrales adaptées aux besoins variés des propriétaires, investisseurs et entreprises.</p>
+                <p data-translate="about_p2">Grâce à une solide expérience dans le secteur de l'immobilier, nous assurons la gestion, le développement et la construction de biens immobiliers, qu'ils soient résidentiels, commerciaux ou industriels.</p>
+                <div class="about-highlight">
+                    <p data-translate="about_highlight"><strong>Betna est actuellement le partenaire clé de l'État dans la gestion de la cité de l'Union Africaine (60 villas), actuellement occupée à 90% par des missions diplomatiques et grandes entreprises présentes au Tchad.</strong></p>
+                </div>
+            </div>
+            <div class="about-text">
+                <img src="assets/images/projects/CoursPropre.jpeg" alt="About Betna" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: var(--bg-light);">
+        <h2 class="section-title" data-translate="services_title">Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-building"></i></div>
+                <h3 data-translate="service1_title">Constructions</h3>
+                <p data-translate="service1_desc">Nous prenons en charge vos projets de constructions de A à Z, qu'il s'agisse de nouvelles constructions, rénovations ou de réhabilitations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <h3 data-translate="service2_title">Gestion Locative</h3>
+                <p data-translate="service2_desc">Gestion complète de vos biens immobiliers incluant la recherche de locataires et la gestion des relations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 data-translate="service3_title">Gestion Commerciale</h3>
+                <p data-translate="service3_desc">Solutions commerciales adaptées pour maximiser la rentabilité de vos actifs immobiliers.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <h3 data-translate="service4_title">Maintenance et Entretien</h3>
+                <p data-translate="service4_desc">Services complets de maintenance : climatisation, plomberie, électricité et plus encore.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-calculator"></i></div>
+                <h3 data-translate="service5_title">Gestion Financière</h3>
+                <p data-translate="service5_desc">Gestion des finances liées au bien, collecte des loyers et gestion des dépenses courantes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-gavel"></i></div>
+                <h3 data-translate="service6_title">Représentation Légale</h3>
+                <p data-translate="service6_desc">Formalités légales, litiges et procédures administratives nécessaires.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grand Standing Section -->
+    <section id="grand-standing" class="grand-standing">
+        <h2 class="section-title" data-translate="standing_title">Grand Standing</h2>
+        <div class="grand-standing-content">
+            <p data-translate="standing_desc">Partenaire privilégié de l'État tchadien, Betna gère la prestigieuse cité de l'Union Africaine, symbole d'excellence et de professionnalisme dans la gestion immobilière de haut standing.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">60</div>
+                    <div data-translate="stat1">Villas Gérées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">90%</div>
+                    <div data-translate="stat2">Taux d'Occupation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div data-translate="stat3">Missions Diplomatiques</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2 class="section-title" data-translate="team_title">Notre Équipe</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="assets/images/team/BJzA2qRmPKZw.jpg" alt="Team Member" class="team-photo">
+                <div class="team-info">
+                    <h3>Directeur Général</h3>
+                    <p data-translate="team_role1">Direction & Stratégie</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="assets/images/team/BJzA2qRmPKZw.jpg" alt="Team Member" class="team-photo">
+                <div class="team-info">
+                    <h3>Chef de Projet</h3>
+                    <p data-translate="team_role2">Gestion de Projets</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="assets/images/team/BJzA2qRmPKZw.jpg" alt="Team Member" class="team-photo">
+                <div class="team-info">
+                    <h3>Chef de Projet</h3>
+                    <p data-translate="team_role2">Gestion de Projets</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="assets/images/team/BJzA2qRmPKZw.jpg" alt="Team Member" class="team-photo">
+                <div class="team-info">
+                    <h3>Chef de Projet</h3>
+                    <p data-translate="team_role2">Gestion de Projets</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="background: var(--bg-light);">
+        <h2 class="section-title" data-translate="projects_title">Nos Réalisations</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="assets/images/projects/Salon1.jpeg" alt="Project" class="project-image">
+                <div class="project-overlay">
+                    <h3 data-translate="project1_title">Cité Union Africaine</h3>
+                    <p data-translate="project1_desc">Gestion de 60 villas de standing</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/projects/DevantureVilla1.jpeg" alt="Project" class="project-image">
+                <div class="project-overlay">
+                    <h3 data-translate="project2_title">Complexe Résidentiel</h3>
+                    <p data-translate="project2_desc">Construction et aménagement</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/projects/Salon6.jpeg" alt="Project" class="project-image">
+                <div class="project-overlay">
+                    <h3 data-translate="project1_title">Cité Union Africaine</h3>
+                    <p data-translate="project1_desc">Gestion de 60 villas de standing</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/projects/CoursPropre.jpeg" alt="Project" class="project-image">
+                <div class="project-overlay">
+                    <h3 data-translate="project2_title">Complexe Résidentiel</h3>
+                    <p data-translate="project2_desc">Construction et aménagement</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/projects/Douche1.jpeg" alt="Project" class="project-image">
+                <div class="project-overlay">
+                    <h3 data-translate="project1_title">Cité Union Africaine</h3>
+                    <p data-translate="project1_desc">Gestion de 60 villas de standing</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/projects/Cours2.jpeg" alt="Project" class="project-image">
+                <div class="project-overlay">
+                    <h3 data-translate="project2_title">Complexe Résidentiel</h3>
+                    <p data-translate="project2_desc">Construction et aménagement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients-section">
+        <h2 class="section-title" data-translate="clients_title">Nos Clients & Références</h2>
+        <div class="clients-grid">
+            <div class="client-item">UN</div>
+            <div class="client-item">IMF</div>
+            <div class="client-item">AU</div>
+            <div class="client-item">US Embassy</div>
+            <div class="client-item">Qatar Embassy</div>
+            <div class="client-item">Italy Embassy</div>
+            <div class="client-item">Nigeria Embassy</div>
+            <div class="client-item">Saudi Arabia Embassy</div>
+            <div class="client-item">India Embassy</div>
+            <div class="client-item">UAE Embassy</div>
+            <div class="client-item">Egypt Embassy</div>
+            <div class="client-item">Germany Embassy</div>
+            <div class="client-item">South Africa Embassy</div>
+            <div class="client-item">Perenco</div>
+            <div class="client-item">Hilton N'Djamena</div>
+            <div class="client-item">SOMDIA</div>
+            <div class="client-item">SNE TCHAD</div>
+            <div class="client-item">SHT TCHAD</div>
+            <div class="client-item">Présidence République</div>
+            <div class="client-item">Mairie N'Djamena</div>
+            <div class="client-item">CBT</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title" data-translate="contact_title">Contactez-nous</h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form id="contactForm" method="POST">
+                    <div class="form-group">
+                        <label for="name" data-translate="form_name">Nom complet</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-translate="form_email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-translate="form_phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" data-translate="form_subject">Sujet</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-translate="form_message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-translate="form_submit">Envoyer</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-item">
+                        <i class="fas fa-phone info-icon"></i>
+                        <div>
+                            <h4 data-translate="contact_phone">Téléphone</h4>
+                            <p>+235 66 24 24 35<br>+235 65 03 35 00</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope info-icon"></i>
+                        <div>
+                            <h4 data-translate="contact_email">Email</h4>
+                            <p>direction@betna.td</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-globe info-icon"></i>
+                        <div>
+                            <h4 data-translate="contact_website">Site Web</h4>
+                            <p>betna.td</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt info-icon"></i>
+                        <div>
+                            <h4 data-translate="contact_address">Adresse</h4>
+                            <p>N'Djamena, Tchad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124786.11707309944!2d15.044219!3d12.134846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1114e1d839c8d10d%3A0x7e6f9f3f5d9f3f3f!2sN&#39;Djamena%2C%20Chad!5e0!3m2!1sen!2s!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="assets/images/logo.png" alt="Betna Logo" class="footer-logo">
+                <p data-translate="footer_desc">Prime Betna Services est le leader de la gestion immobilière au Tchad, offrant des services exceptionnels depuis 2021.</p>
+            </div>
+            <div class="footer-section">
+                <h3 data-translate="footer_links">Liens Rapides</h3>
+                <a href="#home" data-translate="nav_home">Accueil</a>
+                <a href="#about" data-translate="nav_about">À Propos</a>
+                <a href="#services" data-translate="nav_services">Services</a>
+                <a href="#contact" data-translate="nav_contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3 data-translate="footer_contact">Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i> N'Djamena, Chad</p>
+                <p><i class="fas fa-envelope"></i> direction@betna.td</p>
+                <p><i class="fas fa-phone"></i> +235 66 24 24 35</p>
+                <p><i class="fas fa-phone"></i> +235 65 03 35 00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-translate="footer_copyright">© 2024 Prime Betna Services. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            fr: {
+                nav_home: "Accueil",
+                nav_about: "À Propos",
+                nav_services: "Services",
+                nav_standing: "Grand Standing",
+                nav_team: "Équipe",
+                nav_projects: "Réalisations",
+                nav_contact: "Contact",
+                hero_title: "Diversified Services, Unvarying Quality",
+                hero_subtitle: "Leader de la gestion immobilière au Tchad",
+                hero_cta: "Contactez-nous",
+                about_title: "À Propos de Betna",
+                about_subtitle: "Votre Partenaire en Gestion Immobilière",
+                about_p1: "Betna est une société spécialisée dans la gestion immobilière et les services de construction, proposant des solutions intégrales adaptées aux besoins variés des propriétaires, investisseurs et entreprises.",
+                about_p2: "Grâce à une solide expérience dans le secteur de l'immobilier, nous assurons la gestion, le développement et la construction de biens immobiliers, qu'ils soient résidentiels, commerciaux ou industriels.",
+                about_highlight: "Betna est actuellement le partenaire clé de l'État dans la gestion de la cité de l'Union Africaine (60 villas), actuellement occupée à 90% par des missions diplomatiques et grandes entreprises présentes au Tchad.",
+                services_title: "Nos Services",
+                service1_title: "Constructions",
+                service1_desc: "Nous prenons en charge vos projets de constructions de A à Z, qu'il s'agisse de nouvelles constructions, rénovations ou de réhabilitations.",
+                service2_title: "Gestion Locative",
+                service2_desc: "Gestion complète de vos biens immobiliers incluant la recherche de locataires et la gestion des relations.",
+                service3_title: "Gestion Commerciale",
+                service3_desc: "Solutions commerciales adaptées pour maximiser la rentabilité de vos actifs immobiliers.",
+                service4_title: "Maintenance et Entretien",
+                service4_desc: "Services complets de maintenance : climatisation, plomberie, électricité et plus encore.",
+                service5_title: "Gestion Financière",
+                service5_desc: "Gestion des finances liées au bien, collecte des loyers et gestion des dépenses courantes.",
+                service6_title: "Représentation Légale",
+                service6_desc: "Formalités légales, litiges et procédures administratives nécessaires.",
+                standing_title: "Grand Standing",
+                standing_desc: "Partenaire privilégié de l'État tchadien, Betna gère la prestigieuse cité de l'Union Africaine, symbole d'excellence et de professionnalisme dans la gestion immobilière de haut standing.",
+                stat1: "Villas Gérées",
+                stat2: "Taux d'Occupation",
+                stat3: "Missions Diplomatiques",
+                team_title: "Notre Équipe",
+                team_role1: "Direction & Stratégie",
+                team_role2: "Gestion de Projets",
+                projects_title: "Nos Réalisations",
+                project1_title: "Cité Union Africaine",
+                project1_desc: "Gestion de 60 villas de standing",
+                project2_title: "Complexe Résidentiel",
+                project2_desc: "Construction et aménagement",
+                clients_title: "Nos Clients & Références",
+                contact_title: "Contactez-nous",
+                form_name: "Nom complet",
+                form_email: "Email",
+                form_phone: "Téléphone",
+                form_subject: "Sujet",
+                form_message: "Message",
+                form_submit: "Envoyer",
+                contact_phone: "Téléphone",
+                contact_email: "Email",
+                contact_website: "Site Web",
+                contact_address: "Adresse",
+                footer_desc: "Prime Betna Services est le leader de la gestion immobilière au Tchad, offrant des services exceptionnels depuis 2021.",
+                footer_links: "Liens Rapides",
+                footer_contact: "Contact",
+                footer_copyright: "© 2024 Prime Betna Services. Tous droits réservés."
+            },
+            en: {
+                nav_home: "Home",
+                nav_about: "About",
+                nav_services: "Services",
+                nav_standing: "Premium",
+                nav_team: "Team",
+                nav_projects: "Projects",
+                nav_contact: "Contact",
+                hero_title: "Diversified Services, Unvarying Quality",
+                hero_subtitle: "Leading Real Estate Management in Chad",
+                hero_cta: "Contact Us",
+                about_title: "About Betna",
+                about_subtitle: "Your Real Estate Management Partner",
+                about_p1: "Betna is a company specialized in real estate management and construction services, offering comprehensive solutions tailored to the varied needs of owners, investors and businesses.",
+                about_p2: "With solid experience in the real estate sector, we ensure the management, development and construction of real estate properties, whether residential, commercial or industrial.",
+                about_highlight: "Betna is currently the key partner of the State in the management of the African Union city (60 villas), currently 90% occupied by diplomatic missions and major companies present in Chad.",
+                services_title: "Our Services",
+                service1_title: "Construction",
+                service1_desc: "We handle your construction projects from A to Z, whether new constructions, renovations or rehabilitations.",
+                service2_title: "Rental Management",
+                service2_desc: "Complete management of your real estate including tenant search and relationship management.",
+                service3_title: "Commercial Management",
+                service3_desc: "Tailored commercial solutions to maximize the profitability of your real estate assets.",
+                service4_title: "Maintenance & Repairs",
+                service4_desc: "Complete maintenance services: air conditioning, plumbing, electricity and more.",
+                service5_title: "Financial Management",
+                service5_desc: "Management of property finances, rent collection and current expenses management.",
+                service6_title: "Legal Representation",
+                service6_desc: "Legal formalities, disputes and necessary administrative procedures.",
+                standing_title: "Premium Standing",
+                standing_desc: "A privileged partner of the Chadian State, Betna manages the prestigious African Union city, a symbol of excellence and professionalism in high-end real estate management.",
+                stat1: "Managed Villas",
+                stat2: "Occupancy Rate",
+                stat3: "Diplomatic Missions",
+                team_title: "Our Team",
+                team_role1: "Management & Strategy",
+                team_role2: "Project Management",
+                projects_title: "Our Projects",
+                project1_title: "African Union City",
+                project1_desc: "Management of 60 premium villas",
+                project2_title: "Residential Complex",
+                project2_desc: "Construction and development",
+                clients_title: "Our Clients & References",
+                contact_title: "Contact Us",
+                form_name: "Full Name",
+                form_email: "Email",
+                form_phone: "Phone",
+                form_subject: "Subject",
+                form_message: "Message",
+                form_submit: "Send",
+                contact_phone: "Phone",
+                contact_email: "Email",
+                contact_website: "Website",
+                contact_address: "Address",
+                footer_desc: "Prime Betna Services is the leader in real estate management in Chad, offering exceptional services since 2021.",
+                footer_links: "Quick Links",
+                footer_contact: "Contact",
+                footer_copyright: "© 2024 Prime Betna Services. All rights reserved."
+            },
+            ar: {
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_standing: "الفاخرة",
+                nav_team: "الفريق",
+                nav_projects: "المشاريع",
+                nav_contact: "اتصل بنا",
+                hero_title: "خدمات متنوعة، جودة ثابتة",
+                hero_subtitle: "الرائدة في إدارة العقارات في تشاد",
+                hero_cta: "اتصل بنا",
+                about_title: "عن بتنا",
+                about_subtitle: "شريكك في إدارة العقارات",
+                about_p1: "بتنا هي شركة متخصصة في إدارة العقارات وخدمات البناء، وتقدم حلولاً شاملة مصممة لتلبية الاحتياجات المتنوعة للملاك والمستثمرين والشركات.",
+                about_p2: "بفضل الخبرة الواسعة في قطاع العقارات، نضمن إدارة وتطوير وبناء الممتلكات العقارية، سواء كانت سكنية أو تجارية أو صناعية.",
+                about_highlight: "بتنا حاليًا الشريك الرئيسي للدولة في إدارة مدينة الاتحاد الأفريقي (60 فيلا)، والتي يشغلها حاليًا 90٪ من البعثات الدبلوماسية والشركات الكبرى الموجودة في تشاد.",
+                services_title: "خدماتنا",
+                service1_title: "البناء",
+                service1_desc: "نتعامل مع مشاريع البناء الخاصة بك من الألف إلى الياء، سواء كانت مباني جديدة أو تجديدات أو إعادة تأهيل.",
+                service2_title: "إدارة الإيجارات",
+                service2_desc: "إدارة كاملة لممتلكاتك العقارية بما في ذلك البحث عن المستأجرين وإدارة العلاقات.",
+                service3_title: "الإدارة التجارية",
+                service3_desc: "حلول تجارية مخصصة لتعظيم ربحية أصولك العقارية.",
+                service4_title: "الصيانة والإصلاح",
+                service4_desc: "خدمات صيانة كاملة: تكييف الهواء والسباكة والكهرباء والمزيد.",
+                service5_title: "الإدارة المالية",
+                service5_desc: "إدارة الشؤون المالية المتعلقة بالعقار، وتحصيل الإيجارات وإدارة المصروفات الجارية.",
+                service6_title: "التمثيل القانوني",
+                service6_desc: "الإجراءات القانونية والنزاعات والإجراءات الإدارية اللازمة.",
+                standing_title: "الفاخرة",
+                standing_desc: "كشريك مميز لدولة تشاد، تدير بتنا مدينة الاتحاد الأفريقي المرموقة، رمز التميز والاحترافية في إدارة العقارات الراقية.",
+                stat1: "فيلات مُدارة",
+                stat2: "معدل الإشغال",
+                stat3: "بعثات دبلوماسية",
+                team_title: "فريقنا",
+                team_role1: "الإدارة والاستراتيجية",
+                team_role2: "إدارة المشاريع",
+                projects_title: "مشاريعنا",
+                project1_title: "مدينة الاتحاد الأفريقي",
+                project1_desc: "إدارة 60 فيلا فاخرة",
+                project2_title: "مجمع سكني",
+                project2_desc: "البناء والتطوير",
+                clients_title: "عملاؤنا ومراجعنا",
+                contact_title: "اتصل بنا",
+                form_name: "الاسم الكامل",
+                form_email: "البريد الإلكتروني",
+                form_phone: "الهاتف",
+                form_subject: "الموضوع",
+                form_message: "الرسالة",
+                form_submit: "إرسال",
+                contact_phone: "الهاتف",
+                contact_email: "البريد الإلكتروني",
+                contact_website: "الموقع الإلكتروني",
+                contact_address: "العنوان",
+                footer_desc: "برايم بتنا سيرفيسز هي الشركة الرائدة في إدارة العقارات في تشاد، وتقدم خدمات استثنائية منذ عام 2021.",
+                footer_links: "روابط سريعة",
+                footer_contact: "اتصل بنا",
+                footer_copyright: "© 2024 برايم بتنا سيرفيسز. جميع الحقوق محفوظة."
+            }
+        };
+
+        // Language Switcher
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // RTL support for Arabic
+            if (lang === 'ar') {
+                document.body.classList.add('rtl');
+            } else {
+                document.body.classList.remove('rtl');
+            }
+        }
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+
+            try {
+                // Option 1: Utiliser contact.php (Hostinger SMTP)
+                const response = await fetch('contact.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // Option 2: Alternative avec FormSubmit (décommenter si besoin)
+                // const response = await fetch('https://formsubmit.co/direction@betna.td', {
+                //     method: 'POST',
+                //     body: formData
+                // });
+
+                if (response.ok) {
+                    alert('Message envoyé avec succès! Nous vous contacterons bientôt.');
+                    this.reset();
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                alert('Erreur lors de l\'envoi du message. Veuillez réessayer ou nous contacter directement.');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .team-member, .project-card, .client-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
